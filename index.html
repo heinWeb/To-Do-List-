@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To Do List | heinsithu </title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="wrapper">
-    <div class="main-container">
-      <div class="list-container">
-        <h2>To do List
-          <img src="./images/listImage.png" alt="List Note"
-          class="list-image">
-        </h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List | heinsithu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="main-container">
+        <div class="list-container">
+          <h2>
+            To do List
+            <img
+              src="./images/listImage.png"
+              alt="List Note"
+              class="list-image"
+            />
+          </h2>
+        </div>
+        <div class="row">
+          <input type="text" placeholder="Text your do list" id="inputBox" />
+          <button id="add-btn">Add</button>
+        </div>
+        <div class="nav">
+          <ul>
+            <li>All</li>
+            <li>Pending</li>
+            <li>Done</li>
+          </ul>
+          <button type="button" id="clear-all">Clear</button>
+        </div>
+        <div class="result"></div>
       </div>
-      <div class="row">
-        <input type="text"
-        placeholder="Text your do list"
-        id="inputBox">
-        <button id="myBtn">Add</button>
-      </div>
-        <ul class="result">
-          <!-- <li>hi <span>❌</span></li> -->
-        </ul>
     </div>
-  </div>
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
+
+

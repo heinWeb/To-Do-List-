@@ -1,26 +1,56 @@
 const inputBox = document.getElementById("inputBox");
-const myBtn = document.getElementById("myBtn");
+const addBtn = document.getElementById("add-btn");
 const result = document.querySelector(".result");
 
-const toDoList = () => {
-    const li = document.createElement("li");
-    li.innerHTML = inputBox.value;
-    result.append(li);
-    const span = document.createElement("span");
-    span.innerHTML = "❌";
-    li.append(span);
-    inputBox.value = "";
-    li.addEventListener("click", () => {
-        li.classList.toggle("done");
-    })
-    span.addEventListener("click", () => {
-        li.remove();
-    })
+// there is no value in toDo make it empty arry to prevent duplicating of local storage.
+let toDo = JSON.parse(localStorage.getItem("to-do-list")) || [];
+
+function toShowTasks() {
+  toDo.forEach((value, index) => {
+    result.innerHTML += `
+        <div class="forComplete">
+            <div id=${index} class="userValue">
+                <p>${value.task}</p>
+            </div>
+            <div>
+                <span class="edit">🔄️</span>
+                <span class="delete">❌</span>
+            </div>
+        </div>
+        `;
+  });
+  // line through toggle if user complete their tasks
+  const forComplete = document.querySelectorAll(".forComplete .userValue");
+  for (let item of forComplete) {
+    item.addEventListener("click", () => {
+      item.classList.toggle("done");
+      if (item.classList.contains("done")) {
+        toDo[item.id].status = "done";
+        localStorage.setItem("to-do-list", JSON.stringify(toDo));
+      } else {
+        toDo[item.id].status = "pending";
+        localStorage.setItem("to-do-list", JSON.stringify(toDo));
+      }
+    });
+  }
 }
 
-myBtn.addEventListener("click", toDoList)
+const toDoList = () => {
+  let userInput = inputBox.value;
+  // there is no value it's doesn't work
+  if (userInput) {
+    let userTasks = { task: userInput, status: "pending" };
+    toDo.push(userTasks);
+    localStorage.setItem("to-do-list", JSON.stringify(toDo));
+    inputBox.value = "";
+    toShowTasks();
+  }
+};
+
+addBtn.addEventListener("click", toDoList);
 inputBox.addEventListener("keyup", (e) => {
-    if(e.key === "Enter") {
-        toDoList();
-    }
-})
+  if (e.key === "Enter") {
+    toDoList();
+  }
+});
+toShowTasks();
