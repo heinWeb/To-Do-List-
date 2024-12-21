@@ -11,7 +11,7 @@ const filterBtn = document.querySelectorAll(".nav ul li");
 let toDo = JSON.parse(localStorage.getItem("to-do-list")) || [];
 
 let isUserEdit = false; //to check user click edit or not;
-let userEditId; //to know which item user want to edit;
+let userEditId = null; //to know which item user want to edit;
 
 // For User Interface
 function toShowTasks(filterStatus) {
@@ -56,6 +56,11 @@ function toShowTasks(filterStatus) {
   deleteBtn.forEach((k) => {
     k.addEventListener("click", () => {
       let userWantToDelete = k.id;
+      if(isUserEdit && userEditId == userWantToDelete){
+        isUserEdit = false;
+        userEditId = null;
+        inputBox.value = "";
+      }
       toDo.splice(userWantToDelete, 1);
       localStorage.setItem("to-do-list", JSON.stringify(toDo));
       toShowTasks();
