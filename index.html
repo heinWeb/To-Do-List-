@@ -20,18 +20,25 @@
           </h2>
         </div>
         <div class="row">
-          <input type="text" placeholder="Text your do list" id="inputBox" />
+          <input type="text" placeholder="Text your list" id="inputBox" />
           <button id="add-btn">Add</button>
         </div>
         <div class="nav">
           <ul>
-            <li>All</li>
-            <li>Pending</li>
-            <li>Done</li>
+            <li id="all" class="active">All</li>
+            <li id="pending">Pending</li>
+            <li id="done">Done</li>
           </ul>
           <button type="button" id="clear-all">Clear</button>
         </div>
         <div class="result"></div>
+      </div>
+      <div class="alert-box">
+        <h2>Are you sure want to delete!</h2>
+        <div>~
+          <button id="ok">Ok</button>
+          <button id="cancle">Cancle</button>
+        </div>
       </div>
     </div>
     <script src="script.js"></script>
